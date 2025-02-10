@@ -265,7 +265,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
 
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
-      border: Border.all(color: borderColor, width: 1.0),
+      border: Border.all(color: bordercolor, width: 1.0),
       color: white,
       borderRadius: BorderRadius.circular(3),
     );

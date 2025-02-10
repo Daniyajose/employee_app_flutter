@@ -12,8 +12,10 @@ const Color textColorName = Color(0xff323238); // #323238
 const Color textColorRole = Color(0xff949C9E); // #949C9E
 const Color lightGray = Color(0xffeeeeee); // #EEEEEE
 const Color black = Color(0xff000000); // #000000
-const Color borderColor = Color(0xffE5E5E5); // #E5E5E5
+const Color bordercolor = Color(0xffE5E5E5); // #E5E5E5
 const Color lightBlue = Color(0xffEDF8FF); // #EDF8FF
+const Color white = Color(0xffffffff); // #FFFFFF
+/*
 
 const Color darkBlue = Color(0xff004a93); // #004A93
 const Color mediumBlue = Color(0xff6AB5FF); // #6AB5FF
@@ -50,3 +52,4 @@ const Color bordercolor = Color(0xFFCCCCCC);
 const Color linkcolor = Color(0xFF085098);
 const Color restartButtonColor = Color(0xff008BDE);
 const Color disabledColor = Color(0xffd4dade);
+*/
