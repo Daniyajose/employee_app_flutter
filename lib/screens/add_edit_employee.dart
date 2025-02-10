@@ -43,6 +43,8 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
       toDate = (widget.employee!.toDate != null && widget.employee!.toDate!.isNotEmpty)
           ? DateFormat("yyyy-MM-dd").parse(widget.employee!.toDate!)
           : null;
+    }else{
+      fromDate= DateTime.now();
     }
   }
  void _saveEmployee() {
@@ -380,7 +382,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
       initialDate: isFromDate ? fromDate : toDate,
       isFromDate: isFromDate,
       firstDate: isFromDate ? DateTime(2020) : (fromDate != null ? fromDate!.add(Duration(days: 1)) : DateTime(2020)),
-      employees : widget.employee
+      employees: widget.employee,
     );
 
     if (pickedDate != null) {
@@ -395,10 +397,8 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
           toDate = pickedDate;
         }
       });
-    }else{
-      fromDate= DateTime.now();
-      toDate = null;
     }
+    // Do not reset fromDate or toDate if the dialog is canceled
   }
 
   void _deleteEmployee(BuildContext context, Employee employee) {

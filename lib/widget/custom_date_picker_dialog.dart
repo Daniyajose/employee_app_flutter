@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 
 import '../utils/constants/asset_constant.dart';
 import '../utils/constants/color_constants.dart';
-
 class CustomDatePickerDialog extends StatefulWidget {
   final DateTime? initialDate;
   final DateTime firstDate;
