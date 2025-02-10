@@ -98,9 +98,9 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
                 iconPath: ImageAssetPath.person,
               ),
               const SizedBox(height: 16),
-              _buildRolePicker(),
+              _selectRolePicker(),
               const SizedBox(height: 16),
-              _buildDateRangePicker(),
+              _selectDateRangePicker(),
               const SizedBox(height: 24),
               const Spacer(),
               _divider(),
@@ -164,7 +164,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
     );
   }
 
-  Widget _buildRolePicker() {
+  Widget _selectRolePicker() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
@@ -197,7 +197,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
     );
   }
 
-  Widget _buildDateRangePicker() {
+  Widget _selectDateRangePicker() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 5.0),
       child: Row(
@@ -292,11 +292,11 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildRoleItem(context, "Product Designer"),
-                  _buildRoleItem(context, "Flutter Developer"),
-                  _buildRoleItem(context, "QA Tester"),
-                  _buildRoleItem(context, "Product Owner"),
-                  _buildRoleItem(context, "Senior Software Developer"),
+                  _selectRoleItem(context, "Product Designer"),
+                  _selectRoleItem(context, "Flutter Developer"),
+                  _selectRoleItem(context, "QA Tester"),
+                  _selectRoleItem(context, "Product Owner"),
+                  _selectRoleItem(context, "Senior Software Developer"),
                 ],
               ),
             );
@@ -306,7 +306,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
     );
   }
 
-  Widget _buildRoleItem(BuildContext context, String role) {
+  Widget _selectRoleItem(BuildContext context, String role) {
     return Column(
       children: [
         ListTile(

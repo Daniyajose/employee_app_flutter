@@ -63,14 +63,14 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
                       runSpacing: 8,
                       children: widget.isFromDate
                           ? [
-                        _quickSelectButton("Today", DateTime.now(), setStateDialog, buttonWidth),
-                        _quickSelectButton("Next Monday", _nextWeekday(DateTime.monday), setStateDialog, buttonWidth),
-                        _quickSelectButton("Next Tuesday", _nextWeekday(DateTime.tuesday), setStateDialog, buttonWidth),
-                        _quickSelectButton("After 1 Week", DateTime.now().add(Duration(days: 7)), setStateDialog, buttonWidth),
+                        _dateSelectButton("Today", DateTime.now(), setStateDialog, buttonWidth),
+                        _dateSelectButton("Next Monday", _nextWeekday(DateTime.monday), setStateDialog, buttonWidth),
+                        _dateSelectButton("Next Tuesday", _nextWeekday(DateTime.tuesday), setStateDialog, buttonWidth),
+                        _dateSelectButton("After 1 Week", DateTime.now().add(Duration(days: 7)), setStateDialog, buttonWidth),
                       ]
                           : [
-                        _quickSelectButton("No Date", null, setStateDialog, buttonWidth),
-                        _quickSelectButton("Today", DateTime.now(), setStateDialog, buttonWidth),
+                        _dateSelectButton("No Date", null, setStateDialog, buttonWidth),
+                        _dateSelectButton("Today", DateTime.now(), setStateDialog, buttonWidth),
                       ],
                     );
                   },
@@ -156,7 +156,7 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
     );
   }
 
-  Widget _quickSelectButton(String text, DateTime? date, Function setStateDialog, double buttonWidth) {
+  Widget _dateSelectButton(String text, DateTime? date, Function setStateDialog, double buttonWidth) {
     bool isSelected = selectedButton == text;
 
     return SizedBox(
