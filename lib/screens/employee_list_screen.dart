@@ -51,8 +51,15 @@ class EmployeeListScreen extends StatelessWidget {
   }
 
   Widget _buildEmployeeList(EmployeeLoaded state) {
-    final currentEmployees = state.employees.where((e) => e.toDate.isEmpty).toList();
-    final previousEmployees = state.employees.where((e) => e.toDate.isNotEmpty).toList();
+    final currentDate = DateTime.now();
+
+    final currentEmployees = state.employees
+        .where((e) => e.toDate.isEmpty || DateTime.parse(e.toDate).isAfter(currentDate))
+        .toList();
+
+    final previousEmployees = state.employees
+        .where((e) => e.toDate.isNotEmpty && DateTime.parse(e.toDate).isBefore(currentDate))
+        .toList();
 
     return LayoutBuilder(
       builder: (context, constraints) {

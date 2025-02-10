@@ -173,14 +173,16 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
           ),
           padding: EdgeInsets.zero,
         ),
-        onPressed: () {
-          setState(() {
-            selectedDate = date; // Allow null for "No Date"
-            selectedButton = text;
-            _calendarKey = UniqueKey();
-          });
-          setStateDialog(() {});
-        },
+          onPressed: () {
+            if (widget.isFromDate || (date != null && date.isAfter(widget.firstDate))) {
+              setState(() {
+                selectedDate = date ?? DateTime.now();
+                selectedButton = text;
+                _calendarKey = UniqueKey();
+              });
+              setStateDialog(() {});
+            }
+          },
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(text, style: TextStyle(fontSize: 14), maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -197,12 +199,14 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
           padding: EdgeInsets.zero,
         ),
         onPressed: () {
-          setState(() {
-            selectedDate = date; // Allow null for "No Date"
-            selectedButton = text;
-            _calendarKey = UniqueKey();
-          });
-          setStateDialog(() {});
+          if (widget.isFromDate || (date != null && date.isAfter(widget.firstDate))) {
+            setState(() {
+              selectedDate = date ?? DateTime.now();
+              selectedButton = text;
+              _calendarKey = UniqueKey();
+            });
+            setStateDialog(() {});
+          }
         },
         child: FittedBox(
           fit: BoxFit.scaleDown,

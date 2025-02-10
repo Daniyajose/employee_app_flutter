@@ -1,6 +1,7 @@
 import 'package:employee_app_flutter/utils/constants/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import '../data/employee.dart';
 import '../logic/employee_cubit.dart';
 import 'package:intl/intl.dart';
@@ -45,7 +46,9 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
     }
   }
  void _saveEmployee() {
-    if (_formKey.currentState!.validate()) {
+   FocusScope.of(context).unfocus();
+
+   if (_formKey.currentState!.validate()) {
       var _stoDate = "";
       if(toDate != null){
         _stoDate = DateFormat('yyyy-MM-dd').format(toDate!);
@@ -66,8 +69,40 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
         cubit.updateEmployee(newEmployee);
       }
 
-      Navigator.pop(context);
+      if(widget.employee == null){
+        if(mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Saved Successfully"),
+            backgroundColor: Colors.green,
+          ),
+        );
+        }
+        _resetForm();
+      }else{
+        if(mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+
+          const SnackBar(
+            content: Text("Updated Successfully"),
+            backgroundColor: Colors.green,
+          ),
+        );
+          Navigator.pop(context);
+        }
+
+      }
+
     }
+  }
+
+
+  void _resetForm() {
+    _nameController.clear();
+    _selectedRole = null;
+    fromDate = DateTime.now();
+    toDate = null;
+    setState(() {});
   }
 
   @override
@@ -80,28 +115,44 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(), // Dismiss keyboard
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Force close the keyboard
+      },
       child: Scaffold(
         appBar: _buildAppBar(),
         body: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-              _buildInputField(
-                controller: _nameController,
-                hintText: "Employee Name",
-                iconPath: ImageAssetPath.person,
-              ),
-              const SizedBox(height: 16),
-              _selectRolePicker(),
-              const SizedBox(height: 16),
-              _selectDateRangePicker(),
-              const SizedBox(height: 24),
-              const Spacer(),
-              _divider(),
-              _buildActionButtons(),
-            ],
+          child: KeyboardDismissOnTap(
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                _buildInputField(
+                  controller: _nameController,
+                  hintText: "Employee Name",
+                  iconPath: ImageAssetPath.person,
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus(); // Dismiss keyboard when tapping role picker
+                    _selectRolePicker();
+                  },
+                  child: _selectRolePicker(),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus(); // Dismiss keyboard when tapping date range picker
+                    _selectDateRangePicker();
+                  },
+                  child: _selectDateRangePicker(),
+                ),
+                const SizedBox(height: 24),
+                const Spacer(),
+                _divider(),
+                _buildActionButtons(),
+              ],
+            ),
           ),
         ),
       ),
@@ -222,7 +273,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
               const SizedBox(width: 12),
               Text(
                 isStartDate
-                    ? (fromDate != null ? DateFormat('d MMM yyyy').format(fromDate!) : 'Today')
+                    ? (fromDate != null && DateFormat('d MMM yyyy').format(fromDate!) != DateFormat('d MMM yyyy').format(DateTime.now())? DateFormat('d MMM yyyy').format(fromDate!) : 'Today')
                     : (toDate != null ? DateFormat('d MMM yyyy').format(toDate!) : 'No date'),
               ),
             ],
@@ -277,7 +328,7 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
   void _showRolePicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (BuildContext context) {
