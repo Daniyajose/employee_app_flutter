@@ -1,4 +1,5 @@
 import 'package:employee_app_flutter/data/employee.dart';
+import 'package:employee_app_flutter/utils/constants/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -121,8 +122,8 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
                             ),
                           ),
                           onPressed: () => Navigator.pop(context),
-                          child: Text(
-                            "Cancel",
+                          child: const Text(
+                            Strings.cancel,
                             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -139,8 +140,8 @@ class _CustomDatePickerDialogState extends State<CustomDatePickerDialog> {
                           onPressed: () {
                             Navigator.pop(context, selectedDate);
                           },
-                          child: Text(
-                            "Save",
+                          child: const Text(
+                            Strings.save,
                             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),

@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:employee_app_flutter/utils/constants/string_constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../data/employee.dart';
 import '../logic/employee_cubit.dart';
 import 'package:intl/intl.dart';
-
 import '../utils/constants/asset_constant.dart';
 import '../utils/constants/color_constants.dart';
 import '../utils/date_picker.dart';
@@ -242,9 +238,9 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _actionButton("Cancel", Colors.blue.shade50, Colors.blue, () => Navigator.pop(context)),
+          _actionButton(Strings.cancel, Colors.blue.shade50, Colors.blue, () => Navigator.pop(context)),
           const SizedBox(width: 8),
-          _actionButton("Save", Colors.blue, Colors.white, validateField),
+          _actionButton(Strings.save, Colors.blue, Colors.white, validateField),
         ],
       ),
     );

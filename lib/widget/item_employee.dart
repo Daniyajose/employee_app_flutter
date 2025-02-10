@@ -1,5 +1,6 @@
 import 'package:employee_app_flutter/utils/constants/asset_constant.dart';
 import 'package:employee_app_flutter/utils/constants/color_constants.dart';
+import 'package:employee_app_flutter/utils/constants/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -98,7 +99,7 @@ class EmployeeCard extends StatelessWidget {
       SnackBar(
         content: const Text("Employee deleted"),
         action: SnackBarAction(
-          label: "UNDO",
+          label: Strings.undo,
           onPressed: () {
             cubit.addEmployee(employee);
           },
