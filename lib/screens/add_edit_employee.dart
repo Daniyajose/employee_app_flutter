@@ -408,7 +408,6 @@ class _AddEditEmployeeScreenState extends State<AddEditEmployeeScreen> {
   }
 
   void validateField() {
-
       if (_nameController.text.trim().isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
